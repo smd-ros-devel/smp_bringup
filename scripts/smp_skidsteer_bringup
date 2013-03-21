@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source /opt/ros/electric/setup.bash
+
+export ROS_PACKAGE_PATH=/home/smp2/ros:/home/smp2/ros/sdsmt_bots:$ROS_PACKAGE_PATH
+export ROS_IP=$(ifconfig wlan1 | grep 'inet addr' | awk '{print $2}' | awk -F: '{print $2}')
+export ROS_MASTER_URI=http://172.16.1.10:11311
+export ROBOT=smp2
+
+rostopic list > /dev/null
+while [ "$?" -eq "1" ]; do
+	sleep 2
+	export ROS_IP=$(ifconfig wlan1 | grep 'inet addr' | awk '{print $2}' | awk -F: '{print $2}')
+	rostopic list > /dev/null
+done
+
+echo "Starting up..."
+/usr/bin/screen -dm -S smp2 roslaunch smp_bringup smp_skidsteer.launch
+
+sleep 5

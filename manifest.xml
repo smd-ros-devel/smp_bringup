@@ -1,0 +1,23 @@
+<package>
+  <description brief="smp_bringup">
+
+     smp_bringup
+
+  </description>
+  <author>Scott K Logan, Matt Richard</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/smp_bringup</url>
+  <depend package="robot_state_publisher"/>
+  <depend package="joint_state_publisher"/>
+  <depend package="openni_launch"/>
+  <depend package="hokuyo_node"/>
+  <depend package="roboteq_nxtgen_controller"/>
+  <depend package="yei_tss_usb"/>
+  <depend package="smp_description"/>
+  <depend package="mecanum_drive"/>
+  <depend package="joint_state_aggregator"/>
+
+</package>
+
+

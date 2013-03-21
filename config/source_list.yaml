@@ -1,0 +1,2 @@
+source_list:
+  [ 'left_joint_states', 'right_joint_states' ]

@@ -1,0 +1,32 @@
+<launch>
+  <group ns="$(env ROBOT)">
+    <param name="robot_description"
+           textfile="$(find smp_description)/urdf/smp_mechanum.urdf" />
+
+    <node name="mecanum_controller_node" pkg="mecanum_drive" type="mecanum_controller_node"
+          output="screen">
+        <param name="wheel_base1" value="0.5969" type="double"/>
+        <param name="wheel_base2" value="0.4445" type="double"/>
+        <param name="wheel_radius" value="0.1016" type="double"/>
+        <param name="front_left" value="wheel_front_left_joint" />
+        <param name="front_right" value="wheel_front_right_joint" />
+        <param name="back_left" value="wheel_back_left_joint" />
+        <param name="back_right" value="wheel_back_right_joint" />
+    </node>
+
+    <node pkg="mecanum_drive" name="mecanum_odom_node" type="mecanum_odom_node" output="screen">
+      <param name="wheel_radius" value="0.1016" />
+      <param name="axle_length" value="0.5969" />
+      <param name="wheelbase_length" value="0.4445" />
+      <param name="left_front_joint_name" value="wheel_front_left_joint" />
+      <param name="right_front_joint_name" value="wheel_front_right_joint" />
+      <param name="left_back_joint_name" value="wheel_back_left_joint" />
+      <param name="right_back_joint_name" value="wheel_back_right_joint" />
+      <param name="publish_tf" value="false" />
+      <param name="odom_publish_rate" value="15" />
+      <remap from="joint_states" to="joint_states_agg" />
+    </node>
+  </group>
+
+  <include file="$(find smp_bringup)/launch/smp_no_controller.launch"/>
+</launch>
