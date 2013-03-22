@@ -68,6 +68,15 @@
     <node pkg="yei_tss_usb" name="tss_usb_node" type="tss_usb_node" output="screen">
       <param name="port" value="/dev/robot/imu" />
       <param name="frame_id" value="/$(env ROBOT)/imu" />
+      <param name="axis_config" value="yzx" />
+      <param name="invert_x_axis" value="false" />
+      <param name="invert_y_axis" value="false" />
+      <param name="invert_z_axis" value="true" />
+      <rosparam param="gravity_vector">[ 0.0, 0.0, -9.80662 ]</rosparam>
+      <param name="reference_vector_mode" value="1" />
+      <param name="orientation_covariance" value="0.1" />
+      <param name="angular_velocity_covariance" value="0.1" />
+      <param name="linear_acceleration_covariance" value="0.1" />
     </node>
   </group>
 </launch>
