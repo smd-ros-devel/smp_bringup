@@ -1,7 +1,7 @@
 <launch>
   <group ns="$(env ROBOT)">
     <param name="robot_description"
-           command="$(find xacro)/xacro.py '$(find smp_description)/urdf/smp_mechanum.urdf.xacro'" />
+           command="$(find xacro)/xacro.py '$(find smp_description)/urdf/smp_mecanum.urdf.xacro'" />
 
     <node name="mecanum_controller_node" pkg="mecanum_drive" type="mecanum_controller_node"
           output="screen">
