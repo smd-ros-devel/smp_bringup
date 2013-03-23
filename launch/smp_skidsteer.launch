@@ -3,25 +3,29 @@
     <param name="robot_description"
            command="$(find xacro)/xacro.py '$(find smp_description)/urdf/smp_skidsteer.urdf.xacro'" />
 
-    <node name="mecanum_controller_node" pkg="mecanum_drive" type="mecanum_controller_node"
+    <arg name="fl_wheel" value="wheel_front_left_joint" />
+    <arg name="fr_wheel" value="wheel_front_right_joint" />
+    <arg name="bl_wheel" value="wheel_back_left_joint" />
+    <arg name="br_wheel" value="wheel_back_right_joint" />
+
+    <node name="skidsteer_controller_node" pkg="skidsteer_drive" type="skidsteer_controller_node"
           output="screen">
-        <param name="wheel_base1" value="0.5969" type="double"/>
-        <param name="wheel_base2" value="0.4445" type="double"/>
-        <param name="wheel_radius" value="0.1016" type="double"/>
-        <param name="front_left" value="wheel_front_left_joint" />
-        <param name="front_right" value="wheel_front_right_joint" />
-        <param name="back_left" value="wheel_back_left_joint" />
-        <param name="back_right" value="wheel_back_right_joint" />
+        <param name="wheel_base" value="0.4454" type="double"/>
+        <param name="wheel_radius" value="0.12" type="double"/>
+        <param name="front_left" value="$(arg fl_wheel)" />
+        <param name="front_right" value="$(arg fr_wheel)" />
+        <param name="back_left" value="$(arg bl_wheel)" />
+        <param name="back_right" value="$(arg br_wheel)" />
     </node>
 
-    <node pkg="mecanum_drive" name="mecanum_odom_node" type="mecanum_odom_node" output="screen">
+    <node pkg="skidsteer_drive" name="skidsteer_odom_node" type="skidsteer_odom_node" output="screen">
       <param name="wheel_radius" value="0.1016" />
       <param name="axle_length" value="0.5969" />
       <param name="wheelbase_length" value="0.4445" />
-      <param name="left_front_joint_name" value="wheel_front_left_joint" />
-      <param name="right_front_joint_name" value="wheel_front_right_joint" />
-      <param name="left_back_joint_name" value="wheel_back_left_joint" />
-      <param name="right_back_joint_name" value="wheel_back_right_joint" />
+      <param name="left_front_joint_name" value="$(arg fl_wheel)" />
+      <param name="right_front_joint_name" value="$(arg fr_wheel)" />
+      <param name="left_back_joint_name" value="$(arg bl_wheel)" />
+      <param name="right_back_joint_name" value="$(arg br_wheel)" />
       <param name="publish_tf" value="false" />
       <param name="odom_publish_rate" value="15" />
       <remap from="joint_states" to="joint_states_agg" />
