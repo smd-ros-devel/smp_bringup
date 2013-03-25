@@ -4,12 +4,12 @@
 
   <group ns="$(env ROBOT)">
     <node pkg="nodelet" name="nodelet_manager" type="nodelet"
-          args="manager"/>
+          args="manager" output="screen" />
 
     <group ns="camera">
       <node pkg="nodelet" type="nodelet" name="openni_driver"
             args="load openni_camera/driver /$(env ROBOT)/nodelet_manager"
-            respawn="true" >
+            output="screen" respawn="true">
         <param name="device_id" value="#1" />
         <param name="rgb_frame_id"   value="/$(env ROBOT)/camera_rgb_optical_frame" />
         <param name="depth_frame_id" value="/$(env ROBOT)/camera_depth_optical_frame" />
@@ -62,7 +62,7 @@
       <param name="use_gui" value="False" />
     </node>
 
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
           respawn="true" output="screen" />
 
     <node name="robot_pose_ekf" pkg="robot_pose_ekf" type="robot_pose_ekf" respawn="true" output="screen">
@@ -95,7 +95,8 @@
     </node>
 
     <node pkg="nodelet" type="nodelet" name="wifi_monitor_manager"
-          args="load smd_wifi_monitor/wifimon nodelet_manager">
+          args="load smd_wifi_monitor/wifimon nodelet_manager"
+          output="screen">
       <param name="poll_interval" value="2" />
       <rosparam param="dev_list">['wlan0']</rosparam>
     </node>
