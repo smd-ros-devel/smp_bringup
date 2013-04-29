@@ -1,0 +1,18 @@
+pub_rate: 1.0
+analyzers:
+  sensors:
+    type: diagnostic_aggregator/AnalyzerGroup
+    path: Sensors
+    analyzers:
+      hokuyo:
+        type: diagnostic_aggregator/GenericAnalyzer
+        path: Hokuyo
+        timeout: 5.0
+      imu:
+        type: diagnostic_aggregator/GenericAnalyzer
+        path: IMU
+        timeout: 5.0
+  motors:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: Motors
+    timeout: 5.0

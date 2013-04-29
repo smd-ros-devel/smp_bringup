@@ -59,7 +59,7 @@
 
     <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher"
           output="screen">
-      <rosparam file="$(find smp_bringup)/config/source_list.yaml" command="load" />
+      <rosparam file="$(find smp_bringup)/param/source_list.yaml" command="load" />
       <param name="rate" value="30" />
       <param name="use_gui" value="False" />
     </node>
@@ -101,6 +101,15 @@
           output="screen">
       <param name="poll_interval" value="2" />
       <rosparam param="dev_list">['wlan0']</rosparam>
+    </node>
+
+    <node pkg="diagnostic_aggregator" type="aggregator_node"
+          name="diagnostic_aggregator" output="screen">
+      <rosparam file="$(find smp_bringup)/param/diagnostics.yaml" command="load" />
+      <param name="base_path" value="$(env ROBOT)" />
+      <param name="analyzers/sensors/analyzers/hokuyo/startswith" value="$(env ROBOT)/hokuyo_node" />
+      <param name="analyzers/sensors/analyzers/imu/startswith" value="$(env ROBOT)/tss_usb_node" />
+      <param name="analyzers/motors/regex" value="$(env ROBOT)/nxtgen_.*_driver_node: .*" />
     </node>
   </group>
 </launch>
