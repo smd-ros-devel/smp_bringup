@@ -17,6 +17,7 @@
   <depend package="smp_description"/>
   <depend package="mecanum_drive"/>
   <depend package="joint_state_aggregator"/>
+  <depend package="robot_pose_ekf"/>
 
 </package>
 

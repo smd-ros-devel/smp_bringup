@@ -16,7 +16,7 @@
         <param name="depth_registration" value="false" />
       </node>
 
-      <include file="$(find openni_launch)/launch/includes/processing.launch">
+      <include file="$(find rgbd_launch)/launch/includes/processing.launch.xml">
         <arg name="manager" value="/$(env ROBOT)/nodelet_manager" />
         <arg name="respawn" value="true" />
       </include>
@@ -99,8 +99,8 @@
     <node pkg="nodelet" type="nodelet" name="wifi_monitor_manager"
           args="load smd_wifi_monitor/wifimon nodelet_manager"
           output="screen">
-      <param name="poll_interval" value="2" />
-      <rosparam param="dev_list">['wlan0']</rosparam>
+      <param name="poll_interval" value="1" />
+      <rosparam param="dev_list">['wlp4s0']</rosparam>
     </node>
 
     <node pkg="diagnostic_aggregator" type="aggregator_node"
